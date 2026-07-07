@@ -3,10 +3,12 @@ name: GLaDOS Auto Checkin
 on:
   push:
     branches: [ main, master ]
-  workflow_dispatch: # 允许你在网页上手动点击运行测试
+  workflow_dispatch: # 允许网页手动触发
   schedule:
-    # 每天国际标准时间 01:00（北京时间上午 09:00）自动运行
-    - cron: '0 1 * * *'
+    # 采用高频补签策略，对抗 GitHub Actions 的随机丢包和延迟
+    - cron: '0 2 * * *'   # 第一次：北京时间 上午 10:00
+    - cron: '0 10 * * *'  # 第二次：北京时间 傍晚 18:00
+    - cron: '0 18 * * *'  # 第三次：北京时间 凌晨 02:00
 
 jobs:
   build:
@@ -25,7 +27,6 @@ jobs:
 
     - name: Run checkin script
       env:
-        # 注意：这里已完美匹配你截图中的 GLADOS_COOKIES
         COOKIE: ${{ secrets.GLADOS_COOKIES }}
       run: |
         sed -i "s|MY_COOKIE = \".*\"|MY_COOKIE = \"$COOKIE\"|g" glados.py
