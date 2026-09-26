@@ -35,5 +35,5 @@ def glados_checkin(cookie_str):
 
 if __name__ == "__main__":
     # 这里保持空字符串即可，GitHub Actions 会在运行时自动把 Secret 塞进这里
-    MY_COOKIE = ""
+    MY_COOKIE = os.environ.get("COOKIE", "")
     glados_checkin(MY_COOKIE)
