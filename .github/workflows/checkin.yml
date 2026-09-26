@@ -29,5 +29,4 @@ jobs:
       env:
         COOKIE: ${{ secrets.GLADOS_COOKIES }}
       run: |
-        sed -i "s|MY_COOKIE = \".*\"|MY_COOKIE = \"$COOKIE\"|g" glados.py
         python glados.py
