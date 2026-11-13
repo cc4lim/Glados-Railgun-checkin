@@ -7,7 +7,7 @@ def glados_checkin(cookie_str):
     
     headers = {
         "cookie": cookie_str,
-        "user-agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/122.0.0.0 Safari/537.36",
+        "user-agent": os.environ["GLADOS_USER_AGENT"],
         "content-type": "application/json;charset=UTF-8",
         "origin": "https://glados.rocks",
         "referer": "https://glados.rocks/console"
