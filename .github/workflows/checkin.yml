@@ -28,5 +28,6 @@ jobs:
     - name: Run checkin script
       env:
         COOKIE: ${{ secrets.GLADOS_COOKIES }}
+        GLADOS_USER_AGENT: ${{ secrets.GLADOS_USER_AGENT }}
       run: |
         python glados.py
